@@ -104,14 +104,14 @@ router.post('/enviar-correo', (req, res) => {
     const transporter = nodemailer.createTransport({
         service: 'Gmail', // Puedes usar otro servicio de correo
         auth: {
-            user: '', // Tu correo electrónico
-            pass: '' // Tu contraseña
+            user: 'vjoel1122@gmail.com', // Tu correo electrónico
+            pass: 'gibc mipx mglx gmcz' // Tu contraseña
         }
     });
 
     const mailOptions = {
-        from: '',
-        to: '', // Correo del destinatario
+        from: 'vjoel11222gmail.com',
+        to: 'vjoel1122@gmail.com', // Correo del destinatario
         subject: 'Nueva Solicitud de Plan',
         text: `Nombre: ${nombre}\nCorreo: ${email}\nTelefono: ${telefono}\nTipo de página: ${tipoPagina}\nNecesito un logo?: ${tipologo}\nAyuda con el hosting?: ${tipohosting}\nDescripción: ${descripcion}`};
 
