@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <link rel="stylesheet" href="CSS/bootstrapcss.css">
+</head>
+
+<header data-bs-theme="dark">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Pagina marketing</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/plan">Planes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/productos">Productos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" aria-disabled="false">cuenta</a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+<body>
+    <div class="container mt-5">
+        <h1>Lista de Productos</h1>
+        <div class="row">
+            <% products.forEach(product => { %>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                          <img src="<%= product.image_url %>" alt="<%= product.name %>">
+                            <h5 class="card-title"><%= product.name %></h5>
+                            <p class="card-text"><%= product.description %></p>
+                            <p class="card-text"><strong>Precio:</strong> $<%= product.price %></p>
+                            <form action="/carrito" method="POST">
+                              <input type="hidden" name="product_id" value="<%= product.productid %>">
+                              <input type="hidden" name="price" value="<%= product.price %>">
+                              <input type="number" name="quantity" value="1" min="1" required>
+                              <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+                          </form>                          
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</body>
+</html>

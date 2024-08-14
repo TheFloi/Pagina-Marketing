@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head><script src="JS/color-modes.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.122.0">
+    <title>Dashboard Template · Bootstrap v5.3</title>
+
+
+    
+
+    <link rel="stylesheet" href="CSS/css@3.css">
+
+<link href="CSS/bootstrapcss.css" rel="stylesheet">
+
+<header data-bs-theme="dark">
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Pagina marketing</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/plan">Planes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/productos">Productos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" aria-disabled="false">cuenta</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+</header>
+<main class="container mt-5">
+  <h1>Carrito de Compras</h1>
+
+  <div class="table-responsive">
+      <table class="table table-striped">
+          <thead>
+              <tr>
+                  <th>Imagen</th>
+                  <th>Producto</th>
+                  <th>Descripción</th>
+                  <th>Cantidad</th>
+                  <th>Precio</th>
+                  <th>Total</th>
+                  <th>Acciones</th>
+              </tr>
+          </thead>
+          <tbody>
+              <% if (cartItems.length > 0) { %>
+                  <% cartItems.forEach(item => { %>
+                      <tr>
+                          <td><img src="<%= item.image_url %>" alt="<%= item.name %>" style="width: 100px; height: auto;"></td>
+                          <td><%= item.name %></td>
+                          <td><%= item.description %></td>
+                          <td><%= item.quantity %></td>
+                          <td>$<%= item.price %></td>
+                          <td>$<%= item.price * item.quantity %></td>
+                          <td>
+                              <form action="/carrito/eliminar/<%= item.product_id %>" method="POST">
+                                  <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                              </form>
+                          </td>
+                      </tr>
+                  <% }) %>
+              <% } else { %>
+                  <tr>
+                      <td colspan="7" class="text-center">No hay productos en el carrito.</td>
+                  </tr>
+              <% } %>
+          </tbody>
+      </table>
+  </div>
+
+  <div class="d-flex justify-content-end">
+      <a href="/checkout" class="btn btn-primary">Proceder al Pago</a>
+  </div>
+</main>
+
+<script src="JS/bootstrapjs.js"></script>
+</body>
+</html>

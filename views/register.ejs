@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">        
+     <!--bootstrap-->
+        <link href="CSS/bootstrapcss.css" rel="stylesheet">
+        <link rel="stylesheet" href="CSS/estilos.css">
+        <style>
+        body {
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: rgb(204, 220, 224);
+        }
+        </style>
+        <title>registro</title>     
+    </head>
+    <header data-bs-theme="dark">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="/vista">Pagina Marketing</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/register">Register</a>
+                </li>
+              </ul>        
+            </div>
+          </div>
+        </nav>
+      </header> 
+    <body>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 shadow-lg p-3 mb-5">
+            <div class="card border-primary">
+                <div class="card-header bg-primary text-white">Registrarse</div>
+                <div class="card-body text-primary">
+                    <form action="/register" method="POST">
+                        <div class="mb-3">
+                        <label for="name" class="form-label">Nombre completo</label>
+                        <input id="name" name="name" type="text" class="form-control" aria-describedby="emailHelp">    
+                        </div>
+                        <div class="mb3">
+                        <label for="user" class="form-label">Nombre de usuario</label>
+                        <input id="user" name="user" type="text" class="form-control">    
+                        </div>
+                        <div class="mb3">
+                        <label for="pass" class="form-label">Crea tu Contraseña</label>
+                        <input id="pass" name="pass" type="password" class="form-control">    
+                        </div>
+                    <div class="card-footer bg-transparent border-primary">
+                        <a href="/vista" type="button" class="btn btn-secondary">cancelar</a>
+                        <button type="submit" class="btn btn-primary">Registrarse</button>
+                    </div>    
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <script src="JS/bootstrapjs.js"></script>
+  
+
+<% if (alert.length > 0) { %>
+  <script>
+    Swal.fire({
+      title: '<%= alertTitle[0] %>',
+      text: '<%= alert[0] %>',
+      icon: 'warning',  // Cambia según el tipo de alerta
+      showConfirmButton: true,
+      timer: false
+    });
+  </script>
+<% } %>
+    </body>
+</html>

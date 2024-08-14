@@ -1,0 +1,6 @@
+{
+    "jwtSecret": "miClaveSecretaEnProduccion",
+    "jwtExpiresIn": "1h",
+    "jwtCookieExpires": 7
+  }
+  

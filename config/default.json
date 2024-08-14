@@ -1,0 +1,6 @@
+{
+    "jwtSecret": "miClaveSecreta",
+    "jwtExpiresIn": "1d",
+    "jwtCookieExpires": 1
+  }
+  
