@@ -44,36 +44,30 @@ router.get('/register', (req, res)=>{
 
 router.post('/carrito', AuthController.isAuthenticated, (req, res) => {
     const { product_id, price } = req.body;
-    const user_id = req.user.id; // Asegúrate de que req.user esté definido
-    const quantity = 1; // Puedes permitir que el usuario elija la cantidad en el frontend
+    const user_id = req.user.id; 
+    const quantity = 1; 
 
-    // Verifica si `price` es un número válido
     if (isNaN(price) || isNaN(quantity)) {
         console.error('El precio o la cantidad no son válidos');
         return res.status(400).send('Precio o cantidad no válidos');
     }
 
-    // Calcula el precio total
     const total_price = parseFloat(price) * quantity;
 
-    // Consulta SQL para insertar el producto en el carrito
     const query = 'INSERT INTO cart_items (user_id, product_id, quantity, total_price) VALUES (?, ?, ?, ?)';
 
-    // Ejecuta la consulta
     conexion.query(query, [user_id, product_id, quantity, total_price], (err, result) => {
         if (err) {
             console.error('Error al agregar producto al carrito:', err);
             return res.status(500).send('Error al agregar producto al carrito');
         }
 
-        // Redirige o responde con éxito
         console.log(req.body)
-        res.redirect('/carrito'); // O puedes usar res.json({ success: true }); si es una API
+        res.redirect('/carrito'); 
     });
 });
 
 
-// Ruta para ver el carrito
 router.get('/carrito', AuthController.isAuthenticated, (req, res) => {
     const user_id = req.user.id;
 
@@ -100,18 +94,18 @@ router.get('/vista', (req, res)=>{
 router.post('/enviar-correo', (req, res) => {
     const { nombre, email, telefono, tipoPagina, tipologo, tipohosting, descripcion, } = req.body;
 
-    // Configura el transporte para enviar el correo electrónico
+   
     const transporter = nodemailer.createTransport({
-        service: 'Gmail', // Puedes usar otro servicio de correo
+        service: 'Gmail', 
         auth: {
-            user: 'vjoel1122@gmail.com', // Tu correo electrónico
-            pass: 'gibc mipx mglx gmcz' // Tu contraseña
+            user: '', 
+            pass: '' 
         }
     });
 
     const mailOptions = {
-        from: 'vjoel11222gmail.com',
-        to: 'vjoel1122@gmail.com', // Correo del destinatario
+        from: '',
+        to: '',
         subject: 'Nueva Solicitud de Plan',
         text: `Nombre: ${nombre}\nCorreo: ${email}\nTelefono: ${telefono}\nTipo de página: ${tipoPagina}\nNecesito un logo?: ${tipologo}\nAyuda con el hosting?: ${tipohosting}\nDescripción: ${descripcion}`};
 
@@ -128,9 +122,7 @@ module.exports = router;
 
 router.post('/login', AuthController.login)
 router.post('/register', AuthController.register)
-router.get('/logout', AuthController.logout)
-//router para los metodos 
-
+router.get('/logout', AuthController.logout) 
 
 
 module.exports = router
